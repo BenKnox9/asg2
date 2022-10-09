@@ -60,14 +60,17 @@ router.post('/birds/create', async (request, response) => {
 
 
 // TODO: get individual bird route(s)
+
 router.get('/:id/', async (request, response) => {
     const id = request.params.id;
     const birdsdb = await Bird.find({ _id: id });
-    response.render('oneBird', {
-        birds: birdsdb
-    });
-
+    if (birdsdb.length > 0) {
+        response.render('oneBird', {
+            birds: birdsdb
+        });
+    } else response.render('404_not_found')
 })
+
 // TODO: Update bird route(s)
 
 router.get('/:id/edit', async (request, response) => {
@@ -117,5 +120,10 @@ router.get('/:id/delete', async (request, response) => {
     await Bird.findOneAndRemove({ _id: id });
     response.status(200).redirect("/birds/");
 })
+
+router.get('*', (request, response) => {
+    response.status(404);
+    response.render('404_not_found')
+});
 
 module.exports = router;
