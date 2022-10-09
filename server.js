@@ -18,7 +18,6 @@ const Bird = require('./models/birdSchema');
 
 const user = process.env.ATLAS_USER;
 const password = process.env.ATLAS_PASSWORD;
-// const db_url = `mongodb+srv://adminguy:7X6FaeVdExWaiHMn@cluster0.dmezaic.mongodb.net/?retryWrites=true&w=majority`
 const db_url = `mongodb+srv://${user}:${password}@cluster0.dmezaic.mongodb.net/?retryWrites=true&w=majority`
 const options = {
     useNewUrlParser: true,

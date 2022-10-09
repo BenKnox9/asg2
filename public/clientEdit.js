@@ -18,8 +18,8 @@ async function editFunction() {
 
     const theImage = image.split("\\");
     var imageFinal = theImage[theImage.length - 1];
-    if (image === '') imageFinal = "default.jpg";
-
+    if (image === '' && imageSource.value === '') imageFinal = "default.jpg";
+    if (imageSource.value !== '') imageFinal = imageSource.value;
 
     const arrayThing = oName.split("\n");
     var textarea = document.getElementById("oNames");
@@ -57,7 +57,6 @@ async function editFunction() {
 function clickHandler(event) {
     event.preventDefault();
     editFunction();
-    // window.location.href = "./";
 }
 const editForm = document.querySelector("#editButton")
 editForm.addEventListener('click', clickHandler);

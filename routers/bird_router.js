@@ -9,7 +9,6 @@ router.use(bodyParser.json());
 
 /* route the default URL: `/birds/ */
 router.get('/', async (request, response) => {
-    // extract the query params
     const search = request.query.search;
     const status = request.query.status;
     const sort = request.query.sort;
@@ -20,7 +19,7 @@ router.get('/', async (request, response) => {
 });
 
 
-// TODO: finishe the "Create" route(s)
+// TODO: finish the "Create" route(s)
 router.get('/create', (request, response) => {
     response.render('create');
 });
@@ -82,8 +81,7 @@ router.get('/:id/edit', async (request, response) => {
 });
 
 router.post('/:id/edit', async (request, response) => {
-    const id = request.body.id;
-    const thingy = { _id: request.body.id }
+    const id = { _id: request.body.id }
     const bird_document = {
 
         primary_name: request.body.primary_name,
@@ -109,7 +107,7 @@ router.post('/:id/edit', async (request, response) => {
         }
     };
 
-    const db_info = await Bird.updateOne(thingy, bird_document);
+    const db_info = await Bird.updateOne(id, bird_document);
     response.status(200).redirect("/birds/");
 })
 

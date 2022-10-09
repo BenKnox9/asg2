@@ -14,13 +14,7 @@ async function createFunction() {
     const credit = document.querySelector("#Credit").value;
     var image = document.querySelector("#imageSource").value;
     if (image === '') image = "default.jpg";
-    /*
-    if (oName === null) {
-        oName = "";
-    } else {
-        oName = oName.split("\n");
-    }
-    */
+
     const birdData = {
         '_id': null,
         'primary_name': pName,
@@ -70,7 +64,6 @@ img.addEventListener('change', (event) => {
         photoPreview.src = URL.createObjectURL(file)
         imageSource.value = file.name;
     }
-
 })
 
 
