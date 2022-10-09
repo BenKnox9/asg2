@@ -1,0 +1,63 @@
+doctype html
+html(lang='en')
+    head
+        title COSC203: Birds of Aotearoa
+        meta(charset='utf-8')
+        meta(name='viewport', content='width=device-width, initial-scale=1')
+        link(rel='stylesheet', href='/styles/layout.css')
+        link(rel='stylesheet', href='/styles/theme.css')
+        link(rel='stylesheet', href='/styles/conservation-status.css')
+        link(rel='stylesheet', href='/styles/cards.css')
+        script(defer, src='/clientEdit.js')
+        mai
+            form(action='/:id/update')
+                input(type='hidden', name='id')
+                div(class='common names')
+                h3 Common Names
+                p
+                | Primary Name : 
+                input(type='text', id='pName', name='primary_name', value = `${bird.primary_name}`)
+                |          English Name: 
+                input(type='text', id='eName', name='english_name', value = `${bird.english_name}`)
+                |          Other Names: 
+                textarea(name="oNames", cols="30", rows="10", id='oNames')
+                div(class='taxonomy')
+                h3 Taxonomy 
+                P 
+                | Scientific Name 
+                input(type='text', id='sName', name='scientific_name', value = `${bird.scientific_name}`)
+                | Order 
+                input(type='text', id='Order', name='order', value = `${bird.order}`)
+                | Family 
+                input(type='text', id='Family', name='family', value = `${bird.family}`)
+                div(class='Size')
+                h3 Size 
+                P 
+                | Length (cm)
+                input(type='Number', id='Length', name='length', value = `${bird.size.length.value}`)
+                
+                | Weight (g)
+                input(type='Number', id='Weight', name='weight', value = `${bird.size.weight.value}`)
+                div(class='conservation')
+                h3 Conservation 
+                P Status
+                select(name='status' id='status')
+                    option(class="Not-Threatened" selected) Not Threatened
+                    option(class="Naturally-Uncommon") Naturally Uncommon
+                    option(class="Relict") Relict
+                    option(class="Recovering") Recovering
+                    option(class="Declining") Declining
+                    option(class="Nationally-Increasing") Nationally Increasing
+                    option(class="Nationally-Vulnerable") Nationally Vulnerable
+                    option(class="Nationally-Endangered") Nationally Endangered
+                    option(class="Nationally-Critical") Nationally Critical
+                    option(class="Data-Deficient") Data Deficient
+                h3 Photo
+                P Photo Credit
+                input(type='text', id="Credit", name='credit', value = `${bird.photo.credit}`)
+                P Upload New Photo
+                input(type='file', id="Image", name='image')           
+                img(id="photoPreview", src=`/images/${bird.photo.source}`)         
+                input(type='text', id="imageSource", name="imageSource", value = `${bird.photo.source}`, readonly = "readonly")
+                input(type='submit', id='editButton')
+

@@ -1,0 +1,76 @@
+doctype html
+html(lang='en')
+    head
+        title COSC203: Birds of Aotearoa
+        meta(charset='utf-8')
+        meta(name='viewport', content='width=device-width, initial-scale=1')
+        link(rel='stylesheet', href='/styles/layout.css')
+        link(rel='stylesheet', href='/styles/theme.css')
+        link(rel='stylesheet', href='/styles/conservation-status.css')
+        link(rel='stylesheet', href='/styles/cards.css')
+        script(defer, src='/scripts/populate_form.js')
+        script(defer, src='/client.js')
+    body
+        include templates/header.pug
+        aside
+            a(href='/') 
+                button Home
+            include templates/status_legend.pug
+        main
+            body
+                form(action='/birds/create', id='form', runat="server")
+                    input(type='hidden', name='id')
+                    div(class='common names')
+                    h3 Common Names
+                    p
+                    | Primary Name
+                    input(type='text', id='pName', name='primary_name', required)
+                    | English Name
+                    input(type='text', id='eName', name='english_name', required)
+                    | Other Names
+                    textarea(name="oNames", cols="30", rows="10", id='oNames')
+                    div(class='taxonomy')
+                    h3 Taxonomy 
+                    P 
+                    | Scientific Name 
+                    input(type='text', id='sName', name='scientific_name', required)
+                    | Order 
+                    input(type='text', id='Order', name='order', required)
+                    | Family 
+                    input(type='text', id='Family', name='family', required)
+                    div(class='Size')
+                    h3 Size 
+                    P 
+                    | Length (cm)
+                    input(type='Number', id='Length', name='length', required)
+                    
+                    | Weight (g)
+                    input(type='Number', id='Weight', name='weight', required)
+                    div(class='conservation')
+                    h3 Conservation 
+                    P Status
+                    select(name='status' id='status')
+                        option(class="Not-Threatened" selected) Not Threatened
+                        option(class="Naturally-Uncommon") Naturally Uncommon
+                        option(class="Relict") Relict
+                        option(class="Recovering") Recovering
+                        option(class="Declining") Declining
+                        option(class="Nationally-Increasing") Nationally Increasing
+                        option(class="Nationally-Vulnerable") Nationally Vulnerable
+                        option(class="Nationally-Endangered") Nationally Endangered
+                        option(class="Nationally-Critical") Nationally Critical
+                        option(class="Data-Deficient") Data Deficient
+                    h3 Photo
+                    P Photo Credit
+                    input(type='text', id="Credit", name='credit', required)
+                    P Upload New Photo
+                    input(type='file', id="Image", name='image')  
+
+                    img(id="photoPreview", src='/images/default.jpg')    
+                    input(type='text', id="imageSource", readonly = "readonly")
+                    
+                    
+                    input(type='submit', id='submitButton')
+                        
+
+    include templates/footer.pug

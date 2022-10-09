@@ -6,8 +6,8 @@ const fs = require('fs');
 const router = express.Router();
 
 /* Routes image URLs */
-router.get('/:filename?', (req, res) => {
-    const filename = req.params.filename;
+router.get('/:filename?', (request, response) => {
+    const filename = request.params.filename;
     var image_path = path.resolve(__dirname, `../public/images/${filename}`);
 
     // if image doesn't exist, use a default image
@@ -16,7 +16,7 @@ router.get('/:filename?', (req, res) => {
         image_path = path.resolve(__dirname, '../public/images/default.jpg');
     }
 
-    res.sendFile(image_path);
+    response.sendFile(image_path);
 });
 
 module.exports = router; // export the router

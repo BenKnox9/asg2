@@ -12,12 +12,10 @@ html(lang='en')
     body
         include templates/header.pug
         aside
-            button(type='button' onclick="location.href='/'") Home
-            a(href='/birds/create') 
-                button Create Bird
-            include templates/filter_form.pug
+            a(href='/')
+                button Home
             include templates/status_legend.pug
         main
             each bird in birds
-                include templates/bird_card.pug
+                include templates/birdById.pug
         include templates/footer.pug
