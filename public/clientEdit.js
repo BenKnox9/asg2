@@ -54,12 +54,12 @@ async function editFunction() {
     })
 
 }
-function clickHandler(event) {
+function submitHandler(event) {
     event.preventDefault();
     editFunction();
 }
 const editForm = document.querySelector("#editButton")
-editForm.addEventListener('click', clickHandler);
+editForm.addEventListener('click', submitHandler);
 
 
 const img = document.getElementById('Image');

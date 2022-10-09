@@ -42,15 +42,13 @@ async function createFunction() {
 
 }
 
-
-
-function clickHandler(event) {
+function submitHandler(event) {
     event.preventDefault();
     createFunction();
 }
 
 const form = document.querySelector("#submitButton")
-form.addEventListener('click', clickHandler);
+form.addEventListener('click', submitHandler);
 
 
 const imageSource = document.getElementById('imageSource');

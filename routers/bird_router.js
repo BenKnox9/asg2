@@ -52,7 +52,7 @@ router.post('/birds/create', async (request, response) => {
     };
 
     const db_info = await Bird.create(bird_document);
-    response.send("success! created message");
+    response.send("success! created bird");
 });
 
 
@@ -107,7 +107,7 @@ router.post('/:id/edit', async (request, response) => {
         }
     };
 
-    const db_info = await Bird.updateOne(id, bird_document);
+    await Bird.updateOne(id, bird_document);
     response.status(200).redirect("/birds/");
 })
 
