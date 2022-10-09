@@ -14,16 +14,19 @@ async function editFunction() {
     const status = document.querySelector("#status").value;
     const credit = document.querySelector("#Credit").value;
     var image = document.querySelector("#Image").value;
-    if (image === '') image = "default.jpg";
 
-    const url = document.URL.split("/");
-    const ID = url[url.length - 2];
+
+    const theImage = image.split("\\");
+    var imageFinal = theImage[theImage.length - 1];
+    if (image === '') imageFinal = "default.jpg";
+
 
     const arrayThing = oName.split("\n");
-
     var textarea = document.getElementById("oNames");
     textarea.textContent = arrayThing.join("\n");
 
+    const thing = document.URL.split("/");
+    const ID = thing[thing.length - 2];
 
     const birdData = {
         'id': ID,
@@ -35,7 +38,7 @@ async function editFunction() {
         'other_names': arrayThing,
         'status': status,
         'credit': credit,
-        'source': image,
+        'source': imageFinal,
         'lvalue': length,
         'lunits': lUnit,
         'wvalue': weight,
@@ -49,22 +52,23 @@ async function editFunction() {
         }
 
     })
-    // console.log(await response.text());
+
 }
 function clickHandler(event) {
     event.preventDefault();
     editFunction();
-    console.log('edit button was clicked');
     // window.location.href = "./";
 }
 const editForm = document.querySelector("#editButton")
 editForm.addEventListener('click', clickHandler);
 
-Image.onchange = evt => {
-    const [file] = Image.files
+
+const img = document.getElementById('Image');
+img.addEventListener('change', (event) => {
+    const [file] = img.files
     if (file) {
-        photoPreview.src = URL.createObjectURL(file);
-        console.log(file.name);
+        photoPreview.src = URL.createObjectURL(file)
         imageSource.value = file.name;
     }
-}
+
+})

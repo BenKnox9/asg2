@@ -44,7 +44,7 @@ async function createFunction() {
             'Content-Type': 'application/json'
         }
     });
-    console.log(await response.text());
+
 
 }
 
@@ -53,7 +53,6 @@ async function createFunction() {
 function clickHandler(event) {
     event.preventDefault();
     createFunction();
-    console.log('button was clicked');
 }
 
 const form = document.querySelector("#submitButton")
@@ -63,25 +62,16 @@ form.addEventListener('click', clickHandler);
 const imageSource = document.getElementById('imageSource');
 const Image = document.getElementById('Image');
 
-/*
-Image.addEventListener('change', (event) => {
-    console.log("image changed");
-    const file = event.target.files[0];
-    console.log(file);
-    imageSource.value = file.name;
-    document.getElementById("photoPreview").src = file.name;
 
-})
-*/
-Image.onchange = evt => {
-    const [file] = Image.files
+const img = document.getElementById('Image');
+img.addEventListener('change', (event) => {
+    const [file] = img.files
     if (file) {
-        photoPreview.src = URL.createObjectURL(file);
-        console.log(file.name);
+        photoPreview.src = URL.createObjectURL(file)
         imageSource.value = file.name;
     }
-}
 
+})
 
 
 

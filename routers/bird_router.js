@@ -27,7 +27,6 @@ router.get('/create', (request, response) => {
 
 
 router.post('/birds/create', async (request, response) => {
-    console.log('router.post/create');
     const bird_document = {
 
         primary_name: request.body.primary_name,
@@ -54,7 +53,6 @@ router.post('/birds/create', async (request, response) => {
     };
 
     const db_info = await Bird.create(bird_document);
-    console.log(db_info, '/create response');
     response.send("success! created message");
 });
 
@@ -83,8 +81,6 @@ router.get('/:id/edit', async (request, response) => {
 router.post('/:id/edit', async (request, response) => {
     const id = request.body.id;
     const thingy = { _id: request.body.id }
-    console.log('router.post/edit');
-    console.log("this is the science name" + request.body.scientific_name);
     const bird_document = {
 
         primary_name: request.body.primary_name,
@@ -111,14 +107,12 @@ router.post('/:id/edit', async (request, response) => {
     };
 
     const db_info = await Bird.updateOne(thingy, bird_document);
-    console.log(db_info, '/edit response');
     response.status(200).redirect("/birds/");
 })
 
 // TODO: Delete bird route(s)
 
 router.get('/:id/delete', async (request, response) => {
-    console.log("I am the delete.");
     const id = request.params.id;
     await Bird.findOneAndRemove({ _id: id });
     response.status(200).redirect("/birds/");
